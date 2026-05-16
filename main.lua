@@ -514,18 +514,9 @@ task.spawn(function()
                 local resources=plot and plot:FindFirstChild("Resources")
                 if not resources then return end
 
-                local hasSelected=false
-
-                for _,v in pairs(selectedResources) do
-                    if v then
-                        hasSelected=true
-                        break
-                    end
-                end
-
                 for _,v in ipairs(resources:GetChildren()) do
                     if v:IsA("Model") then
-                        local canFarm=not hasSelected or selectedResources[v.Name]
+                        local canFarm = selectedResources[v.Name] == true
 
                         if canFarm and not hittingResources[v] then
                             local hp=v:GetAttribute("HP")
@@ -536,6 +527,8 @@ task.spawn(function()
                                 task.spawn(function()
                                     for i=1,resourceHits do
                                         if not resource then break end
+                                        if selectedResources[v.Name] ~= true then break end
+
                                         hit:FireServer(v)
                                         task.wait(resourceHitDelay)
                                     end
