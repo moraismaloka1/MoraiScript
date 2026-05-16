@@ -10,7 +10,7 @@ local PLACE_ID = game.PlaceId
 --////////////////////////////////////////////////////
 
 local BUILD_AN_ISLAND = {
-    [126884695634066] = true
+    [101949297449238] = true
 }
 
 local OIL_EMPIRE = {
